@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -7,6 +7,12 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.11.0" PrivateAssets="all" />
 		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3" PrivateAssets="all" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Common\Common.csproj" GeneratePathProperty="true" PrivateAssets="all" />
+	  <ProjectReference Include="..\ExpressionCompiler\ExpressionCompiler.csproj" GeneratePathProperty="true" PrivateAssets="all" />
+	  <ProjectReference Include="..\Expressions\Expressions.csproj" GeneratePathProperty="true" PrivateAssets="all" />
 	</ItemGroup>
 
 </Project>
