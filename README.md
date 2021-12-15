@@ -37,9 +37,23 @@ The following projects:
 - `Models`
   
   Contains two models:
+ - `NewPolicyDataModel`
+ 
+  Contains data of the new policy.
+ - `NewPolicyVisibilityModel`
+ 
+   Contains visibility information.
   ...
 - `RulesEngine`
   
   Contains the logic for creating visibility model. The rules are executed on each change in the form.
 # Problem definition
-As the rules are becoming more and more complex,
+As the rules are becoming more and more complex, the development team searches for a solution to automate the process of converting the expressions to code.
+Source generators can be handy here. Write a generator that:
+- Generates `RuleAttribute` that will decorate the `VisibilityRules` class. Example:
+ ``` csharp
+ [Rule("DrivingDetailsVisible", "!IsCompany AND HasDrivingLicence AND AnnualMilage > 20000")
+ [Rule("ChildDetailVisible", "!IsCompany AND (HasChild OR HasStepChild)")
+ public partial class VisibilityRules {...}
+ ```
+- Generates the (partial) class `VisibilityRules` containing rules for each defined property and a `CreateVisibility` producing the `NewPolicyVisibilityModel` instance.
