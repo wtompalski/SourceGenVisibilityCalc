@@ -17,8 +17,8 @@ namespace Generators
             {
                 { "CompanyDetailsVisible", parser.Parse("IsCompany") },
                 { "PersonDetailsVisible", parser.Parse("!IsCompany") },
-                { "DriverDetailsVisible", parser.Parse("!IsCompany && (HasDriverLicence || AnnualMilage > 20000)") },
-                { "ChildrenDetailsVisible", parser.Parse("!IsCompany && HasChildren") },
+                { "DriverDetailsVisible", parser.Parse("!IsCompany AND (HasDriverLicence OR AnnualMilage > 20000)") },
+                { "ChildrenDetailsVisible", parser.Parse("!IsCompany AND HasChildren") },
             });
 
             context.AddSource("VisibilityRules.cs", SourceText.From(code, Encoding.UTF8));
