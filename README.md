@@ -52,8 +52,14 @@ As the rules are becoming more and more complex, the development team searches f
 Source generators can be handy here. Write a generator that:
 - Generates `RuleAttribute` that will decorate the `VisibilityRules` class. Example:
  ``` csharp
- [Rule("DrivingDetailsVisible", "!IsCompany AND HasDrivingLicence AND AnnualMilage > 20000")
- [Rule("ChildDetailVisible", "!IsCompany AND (HasChild OR HasStepChild)")
- public partial class VisibilityRules {...}
+ [VisibilityRules]
+ public partial class VisibilityRules 
+ {
+   [Rule("!IsCompany AND HasDrivingLicence AND AnnualMilage > 20000")"]
+   public bool DrivingDetailsVisible { get; set; }
+ 
+   [Rule("!IsCompany AND (HasChild OR HasStepChild)")]
+   public bool ChildDetailVisible { get; set; }
+ }
  ```
 - Generates the (partial) class `VisibilityRules` containing rules for each defined property and a `CreateVisibility` producing the `NewPolicyVisibilityModel` instance.
