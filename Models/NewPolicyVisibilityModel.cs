@@ -8,5 +8,7 @@ namespace Models
     {
         public bool CompanyDetailsVisible { get; set; }
         public bool PersonDetailsVisible { get; set; }
+        public bool DriverDetailsVisible { get; set; }
+        public bool ChildrenDetailsVisible { get; set; }
     }
 }

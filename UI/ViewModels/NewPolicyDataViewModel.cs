@@ -42,7 +42,40 @@ namespace UI.ViewModels
                 NotifyPropertyChanged();
             }
         }
-        
+
+        private bool _hasDriverLicence;
+        public bool HasDriverLicence
+        {
+            get => _hasDriverLicence;
+            set
+            {
+                _hasDriverLicence = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool _hasChildren;
+        public bool HasChildren
+        {
+            get => _hasChildren;
+            set
+            {
+                _hasChildren = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private int _annualMilage;
+        public int AnnualMilage
+        {
+            get => _annualMilage;
+            set
+            {
+                _annualMilage = value;
+                NotifyPropertyChanged();
+            }
+        }
+
 
         public string CompanyName { get; set; }
 

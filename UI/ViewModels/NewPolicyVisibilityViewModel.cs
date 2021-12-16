@@ -21,18 +21,42 @@ namespace UI.ViewModels
             }
         }
 
-        private bool _CompanyDetailsVisible;
+        private bool _companyDetailsVisible;
         public bool CompanyDetailsVisible
         {
-            get => _CompanyDetailsVisible;
+            get => _companyDetailsVisible;
             set
             {
-                _CompanyDetailsVisible = value;
+                _companyDetailsVisible = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool _driverDetailsVisible;
+        public bool DriverDetailsVisible
+        {
+            get => _driverDetailsVisible;
+            set
+            {
+                _driverDetailsVisible = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool _childrenDetailsVisible;
+        public bool ChildrenDetailsVisible
+        {
+            get => _childrenDetailsVisible;
+            set
+            {
+                _childrenDetailsVisible = value;
                 NotifyPropertyChanged();
             }
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
+
+
 
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {

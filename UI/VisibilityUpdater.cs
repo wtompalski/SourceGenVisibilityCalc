@@ -41,12 +41,17 @@ namespace UI
                 CompanyName = _dataViewModel.CompanyName,
                 FirstName = _dataViewModel.FirstName,
                 LastName = _dataViewModel.LastName,
+                HasDriverLicence = _dataViewModel.HasDriverLicence,
+                HasChildren = _dataViewModel.HasChildren,
+                AnnualMilage = _dataViewModel.AnnualMilage,
             };
 
             var visibility = rulesEngine.CalculateVisibility(newPolicyModel);
 
             _visibilityViewModel.CompanyDetailsVisible = visibility.CompanyDetailsVisible;
             _visibilityViewModel.PersonDetailsVisible = visibility.PersonDetailsVisible;
+            _visibilityViewModel.ChildrenDetailsVisible = visibility.ChildrenDetailsVisible;
+            _visibilityViewModel.DriverDetailsVisible = visibility.DriverDetailsVisible;
         }
     }
 }

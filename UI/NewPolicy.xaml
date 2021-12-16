@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:UI"
         xmlns:converters="clr-namespace:UI.Converters"
         mc:Ignorable="d"
-        Title="New Policy Creator" Height="450" Width="800"
+        Title="New Policy Creator" Height="600" Width="800"
         Initialized="NewPolicy_Initialized"
         Closing="NewPolicy_Closing">
     <Window.Resources>
@@ -16,15 +16,47 @@
         <StackPanel Orientation="Vertical" Margin="10">
             <TextBlock Text="New Policy" FontSize="25" FontWeight="DemiBold"/>
             <StackPanel Orientation="Vertical" Margin="10">
-                <StackPanel Orientation="Vertical" >
-                    <Label Content="Policy for" />
-                    <StackPanel Orientation="Horizontal">
-                        <RadioButton Content="Person" Margin="10" GroupName="PolicyHolderType" IsChecked="{Binding Path=Data.IsCompany, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                        <RadioButton Content="Company" GroupName="PolicyHolderType" Margin="10"/>
+                <Border Margin="0,5,0,5" BorderBrush="Gray" BorderThickness="1">
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="Policy for" />
+                        <StackPanel Orientation="Horizontal">
+                            <RadioButton Content="Company" Margin="10" GroupName="PolicyHolderType" IsChecked="{Binding Path=Data.IsCompany, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <RadioButton Content="Person" GroupName="PolicyHolderType" Margin="10"/>
+                        </StackPanel>
                     </StackPanel>
-                </StackPanel>
-                <StackPanel Orientation="Vertical" Visibility="{Binding Path=Visibility.PersonDetailsVisible, Converter={StaticResource boolToVisibilityConverter}}" >
-                    <Label Content="Policy holder details" />
+                </Border>
+                <Border Margin="0,5,0,5" BorderBrush="Gray" BorderThickness="1" Visibility="{Binding Path=Visibility.PersonDetailsVisible, Converter={StaticResource boolToVisibilityConverter}}">
+                    <StackPanel Orientation="Vertical"  >
+                        <Label Content="Policy holder details" />
+                        <Grid Width="500" HorizontalAlignment="Left">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="4*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Content="First Name" Grid.Row="0" Grid.Column="0" Margin="0,5,0,5" />
+                            <TextBox Grid.Row="0" Grid.Column="1" Margin="0,5,0,5" Text="{Binding Path=Data.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Label Content="Last Name" Grid.Row="1" Grid.Column="0" Margin="0,5,0,5"/>
+                            <TextBox Grid.Row="1" Grid.Column="1" Margin="0,5,0,5" Text="{Binding Path=Data.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <Label Content="Driver licence owner" Grid.Row="2" Grid.Column="0" Margin="0,5,0,5"/>
+                            <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+                                <RadioButton Content="Yes" Margin="10" GroupName="HasDriverLicence" IsChecked="{Binding Path=Data.HasDriverLicence, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                <RadioButton Content="No" GroupName="HasDriverLicence" Margin="10"/>
+                            </StackPanel>
+                            <Label Content="Annual milage" Grid.Row="3" Grid.Column="0" Margin="0,5,0,5"/>
+                            <TextBox Grid.Row="3" Grid.Column="1" Margin="0,5,0,5" Text="{Binding Path=Data.AnnualMilage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </Grid>
+                    </StackPanel>
+                </Border>
+                <Border Margin="0,5,0,5" BorderBrush="Gray" BorderThickness="1" Visibility="{Binding Path=Visibility.DriverDetailsVisible, Converter={StaticResource boolToVisibilityConverter}}">
+                <StackPanel Orientation="Vertical" >
+                    <Label Content="Driver licence details" />
                     <Grid Width="500" HorizontalAlignment="Left">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
@@ -35,27 +67,37 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
-                        <Label Content="First Name" Grid.Row="0" Grid.Column="0" Margin="0,5,0,5" />
-                        <TextBox Grid.Row="0" Grid.Column="1" Margin="0,5,0,5" Text="{Binding Path=Data.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                        <Label Content="Last Name" Grid.Row="1" Grid.Column="0" Margin="0,5,0,5"/>
-                        <TextBox Grid.Row="1" Grid.Column="1" Margin="0,5,0,5" Text="{Binding Path=Data.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <Label Content="Number of cars" Grid.Row="0" Grid.Column="0" Margin="0,5,0,5" />
+                            <StackPanel Grid.Row="0" Grid.Column="1" Margin="0,5,0,5" Orientation="Horizontal">
+                                <RadioButton Content="0" Margin="10" GroupName="PolicyHolderType" IsChecked="{Binding Path=Data.HasCars, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                <RadioButton Content="1" GroupName="PolicyHolderType" Margin="10"/>
+                                <RadioButton Content="2" GroupName="PolicyHolderType" Margin="10"/>
+                                <RadioButton Content="3" GroupName="PolicyHolderType" Margin="10"/>
+                                <RadioButton Content="3+" GroupName="PolicyHolderType" Margin="10"/>
+                            </StackPanel>
+                        <Label Content="Driver licence since" Grid.Row="1" Grid.Column="0" Margin="0,5,0,5" />
+                        <TextBox Grid.Row="1" Grid.Column="1" Margin="0,5,0,5" Text="{Binding Path=Data.DriverLicenceSince, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
                 </StackPanel>
-                <StackPanel Orientation="Vertical" Visibility="{Binding Path=Visibility.CompanyDetailsVisible, Converter={StaticResource boolToVisibilityConverter}}" >
-                    <Label Content="Policy holder details" />
-                    <Grid Width="500" HorizontalAlignment="Left">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="4*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
+                </Border>
+                <Border Margin="0,5,0,5" BorderBrush="Gray" BorderThickness="1" Visibility="{Binding Path=Visibility.CompanyDetailsVisible, Converter={StaticResource boolToVisibilityConverter}}">
 
-                        <Label Content="Company name" Grid.Row="0" Grid.Column="0" Margin="0,5,0,5" />
-                        <TextBox Grid.Row="0" Grid.Column="1" Margin="0,5,0,5" Text="{Binding Path=Data.CompanyName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                    </Grid>
-                </StackPanel>
+                    <StackPanel Orientation="Vertical" >
+                        <Label Content="Policy holder details" />
+                        <Grid Width="500" HorizontalAlignment="Left">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="4*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Content="Company name" Grid.Row="0" Grid.Column="0" Margin="0,5,0,5" />
+                            <TextBox Grid.Row="0" Grid.Column="1" Margin="0,5,0,5" Text="{Binding Path=Data.CompanyName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
             </StackPanel>
         </StackPanel>
 

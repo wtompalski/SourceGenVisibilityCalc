@@ -13,13 +13,12 @@ namespace Generators
         {
             Expressions.ExpressionParser parser = new Expressions.ExpressionParser();
 
-            var expCompany = parser.Parse("IsCompany");
-            var expPerson = parser.Parse("!IsCompany");
-
             var code = new global::ExpressionCompiler.ExpressionCompiler().CompileExpressions(new Dictionary<string, Expressions.Expression>
             {
-                { "CompanyDetailsVisible", expCompany },
-                { "PersonDetailsVisible", expPerson }
+                { "CompanyDetailsVisible", parser.Parse("IsCompany") },
+                { "PersonDetailsVisible", parser.Parse("!IsCompany") },
+                { "DriverDetailsVisible", parser.Parse("!IsCompany && (HasDriverLicence || AnnualMilage > 20000)") },
+                { "ChildrenDetailsVisible", parser.Parse("!IsCompany && HasChildren") },
             });
 
             context.AddSource("VisibilityRules.cs", SourceText.From(code, Encoding.UTF8));

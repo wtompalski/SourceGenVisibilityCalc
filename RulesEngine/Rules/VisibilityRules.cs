@@ -14,6 +14,13 @@ namespace GeneratedClasses
             _data = data;
         }
 
-        public partial NewPolicyVisibilityModel CalculateVisibility();
+        public NewPolicyVisibilityModel CalculateVisibility() => new NewPolicyVisibilityModel
+        {
+            CompanyDetailsVisible = _data.IsCompany,
+            PersonDetailsVisible = !_data.IsCompany,
+            DriverDetailsVisible = !_data.IsCompany && (_data.HasDriverLicence || _data.AnnualMilage > 20000),
+            ChildrenDetailsVisible = !_data.IsCompany && _data.HasChildren
+
+        };
     }
 }
