@@ -8,7 +8,7 @@ namespace RulesEngine
     {
         public NewPolicyVisibilityModel CalculateVisibility(NewPolicyModel data)
         {
-            return new VisibilityRules(data).CalculateVisibility();
+            return new VisibilityRules(data).CalculateVisibilityOldWay();
         }
     }
 }

@@ -14,7 +14,8 @@ namespace GeneratedClasses
             _data = data;
         }
 
-        public NewPolicyVisibilityModel CalculateVisibility() => new NewPolicyVisibilityModel
+
+        public NewPolicyVisibilityModel CalculateVisibilityOldWay() => new NewPolicyVisibilityModel
         {
             CompanyDetailsVisible = _data.IsCompany,
             PersonDetailsVisible = !_data.IsCompany,
@@ -22,5 +23,8 @@ namespace GeneratedClasses
             ChildrenDetailsVisible = !_data.IsCompany && _data.HasChildren
 
         };
+
+
+        public partial NewPolicyVisibilityModel CalculateVisibility();
     }
 }

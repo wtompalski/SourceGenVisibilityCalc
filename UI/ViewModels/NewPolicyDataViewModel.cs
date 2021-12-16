@@ -65,8 +65,8 @@ namespace UI.ViewModels
             }
         }
 
-        private int _annualMilage;
-        public int AnnualMilage
+        private decimal _annualMilage;
+        public decimal AnnualMilage
         {
             get => _annualMilage;
             set
